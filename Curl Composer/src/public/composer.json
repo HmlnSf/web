@@ -1,0 +1,23 @@
+{
+  "name": "vendor_name/lab4",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Андрей",
+      "email": "email@example.com"
+    }
+  ],
+  "require": {
+    "google/apiclient": "^2.12.1"
+  },
+  "scripts": {
+    "pre-autoload-dump": "Google\\Task\\Composer::cleanup"
+  },
+  "extra": {
+    "google/apiclient-services": [
+      "Sheets"
+    ]
+  }
+}
