@@ -1,286 +1,401 @@
 <?php
-function task1()
+
+// 1. Доступ по ссылке
+function firstTask()
 {
-    $very_bad_unclear_name = "15 chicken wings";
-// Write your code here:
-    $order = &$very_bad_unclear_name;
-    $order .= ' and 5 cups of tea';
-// Don't change the line below
-    echo "\nYour order is: $very_bad_unclear_name.";
+	$veryBadUnclearName = '15 chicken wings';
+	$order = &$veryBadUnclearName;
+	$order .= ' with double sauce';
+
+	echo "\nYour order is: $veryBadUnclearName." . "\n";
 }
 
-function task2()
+// 2. Числа
+function secondTask()
 {
-    $var1 = 1;
-    echo $var1 . "</br>";
-    $var2 = 2;
-    echo "$var2" . "</br>";
-    $doubleVar = 6.78;
-    echo $doubleVar . "</br>";
-    echo 6 + 6 . "</br>";
-    $last_month = 1187.23;
-    $this_month = 1089.98;
-    echo $last_month - $this_month . "</br>";
+	$firstArg = 42;
+	echo $firstArg. "\n";
+	$secondArg = 33.932;
+	echo $secondArg . "\n";
+	echo (1+2+3+4+5+6-9) . "\n";
+
+	$lastMonth = 1187.23;
+	$thisMonth = 1089.98;
+	echo "Difference: " . abs($lastMonth - $thisMonth). "\n";
 }
 
-function task11()
+// 3. Умножение и деление
+function thirdTask()
 {
-    $num_languages = 4;
-    $months = 11;
-    $days = $months * 16;
-    $days_per_language = $days / $num_languages;
-    echo $days_per_language;
+	$learnedLanguages = ['Ruby', 'Python', 'JavaScript', 'C++'];
+	$numLanguages = count($learnedLanguages);
+	$months = 11;
+	$days = $months * 16;
+
+	$daysPerLanguage = $days / $numLanguages;
+	echo $daysPerLanguage . "\n";
 }
 
-function task12()
+// 12. Степень
+function fourthTask()
 {
-    echo 8 ** 2;
+	echo 'Eight square equal : '. 8 ** 2 . "\n";
 }
 
-function task13()
+// 13. Операторы присвоения
+function fifthTask()
 {
-    $my_num = 322;
-    $answer = $my_num;
-    $answer += 2;
-    $answer *= 2;
-    $answer -= 2;
-    $answer /= 2;
-    $answer -= $my_num;
-    echo $answer;
+	$myNum = 26;
+	$answer = $myNum;
+	$answer += 2;
+	$answer *= 2;
+	$answer -= 2;
+	$answer /= 2;
+	$answer -= $myNum;
+
+	echo 'Result: ' . $answer . "\n";
 }
 
-function task14()
+// 14. Математические функции
+function sixthTask()
 {
-    $a = 10;
-    $b = 3;
-    echo "Остаток от деления $a на $b = " . ($a % $b) . "</br>";
+	// Работа с %
+	$a = 10;
+	$b = 3;
+	echo $a % $b . "\n";
 
-    if ($a % $b == 0) {
-        echo "Делится" . "</br>";
-    } else {
-        echo "Не делится" . "</br>";
-    }
-    $st = pow(2, 10);
-    echo $st . "</br>";
-    echo sqrt(245) . "</br>";
-    $arr = [4, 2, 5, 19, 13, 0, 10];
-    $sum = 0;
-    foreach ($arr as $item) {
-        $sum += pow($item, 2);
-    }
-    echo sqrt($sum) . "</br>";
-    echo round(sqrt(379)) . " " . round(sqrt(379), 1) . " " . round(sqrt(379), 2) . "</br>";
-    $arr2 = ['floor' => floor(sqrt(587)), 'ceil' => ceil(sqrt(587))];
-    $arr = [4, -2, 5, 19, -130, 0, 10];
-    echo min($arr) . "</br>";
-    echo max($arr) . "</br>";
-    echo rand(1, 100) . "</br>";
-    $arr = [];
-    for ($i = 0; $i < 10; $i++) {
-        $arr[] = rand(1, 10);
-    }
-    print_r($arr);
-    $a = -9;
-    $b = 4;
-    echo abs($a - $b) . "</br>";
-    $arr = [1, 2, -1, -2, 3, -3];
-    for ($i = 0; $i < count($arr); $i++) {
-        $arr[$i] = abs($arr[$i]);
-    }
-    print_r($arr);
-    $digit = 156;
-    $arr = [];
-    for ($i = 1; $i <= $digit / 2; $i++) {
-        if ($digit % $i == 0)
-            $arr[] = $i;
-    }
-    print_r($arr);
-    $arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-    $sum = 0;
-    $i = 0;
-    while ($sum < 10) {
-        $sum += $arr[$i];
-        $i++;
-    }
-    echo $i . "</br>";
+	// Работа со степенью и корнем
+	$a = 32;
+	$b = 7;
+	$module = $a % $b;
+	if ($module)
+	{
+		echo 'Делится с остатком: ' . $module ;
+	}
+	else
+	{
+		echo 'Делится' . "\n";
+	}
+
+	$st = pow(2, 10);
+	echo $st . "\n";
+
+	echo sqrt(245) . "\n";
+
+	$result = 0;
+	$array = [4, 2, 5, 19, 13, 0, 10];
+	foreach ($array as $item)
+	{
+		$result += $item**2;
+	}
+
+	echo sqrt($result) . "\n";
+
+	// Работа с функциями округления
+
+	$result = sqrt(379);
+	echo round($result) . "\n";
+	echo round($result, 1) . "\n";
+	echo round($result, 2) . "\n";
+
+	$result = sqrt(587);
+	$array = [];
+	$array['floor'] = floor($result);
+	$array['ceil'] = ceil($result);
+	print_r($array);
+
+	// Работа с min и max
+
+	$array = [4, -2, 5, 19, -130, 0, 10];
+
+	echo 'max number: ' . max($array) .  "\n";
+	echo 'min number: ' . min($array) .  "\n";
+
+	// Работа с рандомом
+	echo random_int(1, 100) . "\n";
+
+	$result = [];
+	$i = 0;
+	while ($i < 10)
+	{
+		$result[] = random_int(100, 999);
+		$i++;
+	}
+	print_r($result);
+
+	// Работа с модулем
+	$a = 387;
+	$b = 549;
+	echo abs($a - $b) . "\n";
+
+	$result = [];
+	$array = [1, 2, -1, -2, 3, -3];
+	foreach ($array as $item)
+	{
+		$result[] = abs($item);
+	}
+	print_r($result);
+
+	// Общее
+	$number = 27;
+	$array = [];
+	for ($i = 1; $i < ($number / 2) + 1; $i++)
+	{
+		if ($number % $i === 0)
+		{
+			$array[] = $i;
+		}
+	}
+	echo "\n";
+	print_r($array);
+
+	$array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+	$sum = 0;
+	$counter = 0;
+	foreach ($array as $item)
+	{
+		$counter++;
+		$sum += $item;
+		if ($sum > 10)
+		{
+			break;
+		}
+	}
+
+	echo $counter . "\n";
 }
 
-function task15()
-{
-    function printStringReturnNumber(): int
-    {
-        echo "Строка" . "</br>";
-        return 10;
-    }
+// 15. Функции
 
-    $my_num = printStringReturnNumber();
-    echo $my_num . "</br>";
+function printStringReturnNumber(int $number): int
+{
+	echo $number . "\n";
+
+	return $number;
 }
 
-function task16()
+function seventhTask()
 {
-    function increaseEnthusiasm(string $str): string
-    {
-        return $str . '!';
-    }
+	$number = printStringReturnNumber(14);
 
-    echo increaseEnthusiasm('Test') . "</br>";
-
-    function repeatThreeTimes(string $str): string
-    {
-        return $str . $str . $str;
-    }
-
-    echo repeatThreeTimes('Test') . "</br>";
-    echo increaseEnthusiasm(repeatThreeTimes('Test')) . "</br>";
-
-    function cut(string $str, int $num = 10): string
-    {
-        return substr($str, 0, $num);
-    }
-
-    function printArr(array $arr, int $i = 0)
-    {
-        if ($i < count($arr)) {
-            echo "$arr[$i] ";
-            printArr($arr, $i + 1);
-        }
-    }
-
-    function sumOfDigits(int $num): int
-    {
-        $sum = 0;
-        while ($num > 0) {
-            $sum += $num % 10;
-            $num = (int)($num / 10);
-        }
-        if ($sum > 9)
-            return sumOfDigits($sum);
-        return $sum;
-    }
-
+	echo $number . "\n";
 }
 
-function task17()
+// 16. Функции
+
+function increaseEnthusiasm(string $str): string
 {
-    $arr = [];
-    $count = 30;
-    for ($i = 0; $i < $count; $i++) {
-        $arr[$i] = '';
-        for ($j = 0; $j <= $i; $j++) {
-            $arr[$i] .= 'x';
-        }
-    }
-    function arrayFill(string $str, int $num): array
-    {
-        $arr = [];
-        for ($i = 0; $i < $num; $i++) {
-            $arr[$i] = $str;
-        }
-        return $arr;
-    }
-
-    $arr = [[1, 2, 3], [4, 5], [6]];
-    $sum = 0;
-    foreach ($arr as $item) {
-        $sum += array_sum($item);
-    }
-    echo $sum . "</br>";
-
-    $arr = [];
-    for ($i = 0; $i < 3; $i++) {
-        for ($j = 0; $j < 3; $j++) {
-            $arr[$i][$j] = $i * 3 + $j + 1;
-        }
-    }
-    print_r($arr);
-
-    $arr = [2, 5, 3, 9];
-    $result = $arr[0] * $arr[1] + $arr[2] * $arr[3];
-    echo $result . "</br>";
-
-    $user = ['name' => 'Валерий', 'surname' => 'Жмышенко', 'patronymic' => 'Альбертович'];
-    echo $user['surname'] . ' ' . $user['name'] . ' ' . $user['patronymic'] . "</br>";
-
-    $date = ['year' => date('Y'), 'month' => date('m'), 'day' => date('d')];
-    echo $date['year'] . ' ' . $date['month'] . ' ' . $date['day'] . "</br>";
-
-    $arr = ['a', 'b', 'c', 'd', 'e'];
-    echo count($arr) . "</br>";
-    echo $arr[count($arr) - 1] . "</br>";
-    echo $arr[count($arr) - 2] . "</br>";
+	return $str . '!';
 }
 
-function task18()
+function repeatThreeTimes(string $str): string
 {
-    function isSumHigherOf10(int $a, int $b): bool
-    {
-        return $a + $b > 10;
-    }
-
-    function isEqual(int $a, int $b): bool
-    {
-        return $a == $b;
-    }
-
-    $test = 1;
-    echo $test == 0 ? 'верно' : 'неверно';
-
-    $age = 57;
-    if ($age < 10 || $age > 99)
-        echo "Число меньше 10 или больше 99" . "</br>";
-    else {
-        $sum = $age % 10 + (int)($age / 10);
-        if ($sum > 9)
-            echo "Сумма чисел двузначна" . "</br>";
-        else
-            echo "Сумма чисел однозначна" . "</br>";
-    }
-
-    $arr = [5, 6, 7];
-    if (count($arr) == 3)
-        echo array_sum($arr) . "</br>";
+	return $str . $str . $str;
 }
 
-function task19()
+function cut(string $str, int $leaveChar = 10): string
 {
-    for ($i = 0; $i < 20; $i++) {
-        $str = "";
-        for ($j = 0; $j < $i; $j++) {
-            $str .= 'x';
-        }
-        echo $str . "</br>";
-    }
+	return mb_substr($str, 0, $leaveChar);
 }
 
-function task20()
+function eighthTask()
 {
-    $arr = [1, 5, 6, 7];
-    echo array_sum($arr) / count($arr) . "</br>";
+	echo increaseEnthusiasm('Wow that great') . "\n";
+	echo repeatThreeTimes('Many times ') . "\n";
+	echo increaseEnthusiasm(repeatThreeTimes('Some kind of magic')) . "\n";
+	echo cut('So much long string wow', 5) . "\n";
 
-    function sum100(int $num): int
-    {
-        return $num == 1 ? 1 : $num + sum100($num - 1);
-    }
+	$array = [1, 6, 34, 13, 355, 112];
+	array_map(static function($item) {
+		echo $item . "\n";
+	}, $array);
 
-    echo sum100(100) . "</br>";
+	$number = 2732;
+	while ($number > 9)
+	{
+		$result = 0;
+		$tmp = $number;
+		while ($tmp)
+		{
+			$result += $tmp % 10;
+			$tmp /= 10;
+		}
 
-    $sqrt = function ($i): int {
-        return sqrt($i);
-    };
+		$number = $result;
+	}
 
-    array_map($sqrt, $arr);
-    print_r($arr);
-
-    $arr = array_fill_keys(range('a', 'z'), 0);
-    foreach ($arr as $key => $value) {
-        $arr[$key] = ord($key) - 96;
-    }
-    print_r($arr);
-
-    $str = "1234567890";
-    $sum = array_sum(str_split($str, 2));
-    echo $sum;
+	echo $number . "\n";
 }
 
-task20();
+// 17. Массивы
+function arrayFill(string $str, int $times): array
+{
+	$result = [];
+	for ($i = 0; $i < $times; $i++)
+	{
+		$result[$i] = $str;
+	}
+
+	return $result;
+}
+
+function ninthTask()
+{
+	$array = [];
+	for ($i = 0; $i < 7; $i++)
+	{
+		$array[] = str_repeat('x', $i + 1);
+	}
+	print_r($array);
+
+	print_r(arrayFill('someString', 4));
+
+	$result = 0;
+	$array = [[24], [2, 4, 2], [4, 78, 29], [8]];
+	foreach ($array as $item)
+	{
+		foreach ($item as $subItem)
+		{
+			$result += $subItem;
+		}
+	}
+	echo $result . "\n";
+
+	$array = [];
+	for ($i = 0; $i < 3; $i++)
+	{
+		for ($j = 1; $j < 4; $j++)
+		{
+			$array[$i][] = $i * 3 + $j;
+		}
+	}
+	print_r($array);
+
+	$array = [2, 5, 3, 9];
+	$result = $array[0] * $array[1] + $array[2] * $array[3];
+	echo $result . "\n";
+
+	$user = [
+		'name' => 'John',
+		'surname' => 'Doe',
+		'patronymic' => 'American'
+	];
+	echo $user['name'] . ' ' . $user['surname'] . ' ' . $user['patronymic'] . "\n";
+
+	$date = [
+		'year' => 2022,
+		'month' => 10,
+		'day' => 16,
+	];
+	echo $date['year'] .  '-' . $date['month'] . '-' . $date['day'] . "\n";
+
+	$array = ['a', 'b', 'c', 'd', 'e'];
+	echo count($array) . "\n";
+
+	// array совпадает
+	echo $array[count($array) - 1] . ' ' . $array[count($array) - 2] . "\n";
+}
+
+// 18. Конструкция if else
+
+function checkTwoDigitSum(int $a, int $b): bool
+{
+	return $a + $b > 10;
+}
+
+function checkNumberEqual(int $a, int $b): bool
+{
+	return $a === $b;
+}
+
+function tenthTask()
+{
+	echo checkTwoDigitSum(5, 15) . "\n";
+	echo checkNumberEqual(3, 3) . "\n";
+	$test = 56;
+	echo ($test === 0 ? 'верно':'');
+
+	$age = 53;
+	if ($age < 10 || $age > 99)
+	{
+		echo 'число меньше 10 или больше 99' . "\n";
+	}
+	else
+	{
+		$sum = 0;
+		while ($age > 0)
+		{
+			$sum += $age % 10;
+			$age /= 10;
+		}
+
+		if ($sum <= 9)
+		{
+			echo 'сумма цифр однозначна' . "\n";
+		}
+		else
+		{
+			echo 'сумма цифр двузначна' . "\n";
+		}
+	}
+
+	$array = [45, 23, 14];
+	if (count($array) === 3)
+	{
+		$sum = 0;
+
+		foreach ($array as $item)
+		{
+			$sum += $item;
+		}
+
+		echo $sum;
+	}
+}
+
+// 19. Циклы
+function eleventhTask()
+{
+	$length = 20;
+	for ($i = 0; $i < $length; $i++)
+	{
+		echo str_repeat('x', $i + 1) . "\n";
+	}
+}
+
+// 20. Комбинация функций
+function twelfthTask()
+{
+	$array = [4, 6, 18, 34];
+	echo (array_sum($array) / count($array)) . "\n";
+
+	echo array_sum(range(1, 100)) . "\n";
+
+	$array = [49, 4, 25];
+	print_r(array_map(static function($item) {
+		return sqrt($item);
+	}, $array));
+	echo "\n";
+
+	$keys = range('a', 'z');
+	$items = range(1, 26);
+	print_r(array_combine($keys, $items));
+
+	$str = "1234567890";
+	$array = str_split($str, 2);
+	echo array_sum($array) . "\n";
+}
+
+
+// firstTask();
+// secondTask();
+// thirdTask();
+// fourthTask();
+// fifthTask();
+// sixthTask();
+// seventhTask();
+// eighthTask();
+// ninthTask();
+// tenthTask();
+// eleventhTask();
+twelfthTask();
