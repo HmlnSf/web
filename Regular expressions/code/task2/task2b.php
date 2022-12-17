@@ -1,18 +1,31 @@
-<?php
-session_start();
-if (!empty($_POST['name']) && !empty($_POST['surname']) && !empty($_POST['age'])) {
-    $_SESSION['name'] = $_POST['name'];
-    $_SESSION['surname'] = $_POST['surname'];
-    $_SESSION['age'] = $_POST['age'];
-}
-?>
-<form action="task2b.php" method="post">
-    <input type="text" name="name" placeholder="Имя">
-    <input type="text" name="surname" placeholder="Фамилия">
-    <input type="text" name="age" placeholder="Возраст">
-    <input type="submit" value="Отправить">
+<?php session_start() ?>
+
+<form action="" method="post">
+	<p>Введите вашу фамилию<p>
+		<label>
+			<input type="text" name="surname"/>
+		</label>
+	<p>Введите ваше имя<p>
+		<label>
+			<input type="text" name="name"/>
+		</label>
+	<p>Введите ваш возраст<p>
+		<label>
+			<input type="text" name="age"/>
+		</label>
+		<input type="submit" value="Отправить">
 </form>
 
-<form action="task2b_show.php" method="post">
-    <input type="submit" value="Показать информацию">
-</form>
+<a href="task2b_show.php">Перейти к просмотру результатов</a>
+
+<?php
+if (
+	array_key_exists('surname', $_POST)
+	&& array_key_exists('name', $_POST)
+	&& array_key_exists('age', $_POST)
+)
+{
+	$_SESSION['surname'] = $_POST['surname'];
+	$_SESSION['name'] = $_POST['name'];
+	$_SESSION['age'] = $_POST['age'];
+}
