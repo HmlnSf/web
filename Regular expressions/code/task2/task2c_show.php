@@ -1,9 +1,12 @@
+<?php session_start() ?>
+
 <?php
-session_start();
-if (!empty($_SESSION['userinfo'])) {
-    foreach ($_SESSION['userinfo'] as $key => $value) {
-        echo "<li>" . $key . ": " . $value;
-    }
-} else {
-    echo nl2br("\n" . "Данные не сохранены" . "\n");
+if (array_key_exists('result', $_SESSION))
+{
+	echo "<ul>";
+	foreach ($_SESSION['result'] as $param)
+	{
+		echo "<li>" . $param . "</li>";
+	}
+	echo "</ul>";
 }
