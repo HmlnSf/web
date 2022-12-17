@@ -1,17 +1,18 @@
-<form action="task2a.php" method="post">
-    <p>Введите текст русскими буквами</p>
-    <label>
-        <textarea name="task2a"></textarea>
-    </label>
-    <input type="submit" value="Отправить">
+<form action="" method="post">
+	<label>
+		<textarea rows="6" cols="36" name="secondA"></textarea>
+	</label>
+	<button type="submit" value="Отправить данные" style="width: 30px; height: 30px"></button>
 </form>
 
 <?php
-if (!empty($_POST['task2a'])) {
-    $text = $_POST['task2a'];
-    $words = str_word_count($text, 0, "АаБбВвГгДдЕеЁёЖжЗзИиЙйКкЛлМмНнОоПпРрСсТтУуФфХхЦцЧчШшЩщЪъЫыЬьЭэЮюЯя");
-    $symbols = strlen($text);
-    echo nl2br("\n" . "Количество слов: " . $words . "\n");
-    echo nl2br("\n" . "Количество символов: " . $symbols . "\n");
+if (array_key_exists('secondA', $_POST))
+{
+	$text = $_POST['secondA'];
+	$matches = [];
+	preg_match_all('/\w+/', $text, $matches);
+
+	echo 'Количество слов: ' . count($matches[0]) . "<br>";
+	echo 'Количество символов: ' . strlen($text);
 }
 ?>
