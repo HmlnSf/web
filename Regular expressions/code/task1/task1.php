@@ -1,17 +1,23 @@
 <?php
-echo "Задание 1а" . "</br>";
-$str = "abbb ahhhf ahhb hhhb";
-$reg = '/a..b/';
-preg_match_all($reg, $str, $matches);
-foreach ($matches[0] as $match) {
-    echo $match . "</br>";
-}
 
-echo "Задание 1b" . "</br>";
-$str = "a1b2c3";
-$reg = '/(\d+)/';
-$str = preg_replace_callback($reg, function ($matches) {
-    return $matches[0] ** 3;
+// 1. Регулярные выражения
+// a) Напишите регулярку, которая найдет строки 'abba', 'adca',
+// 'abea' по шаблону: буква 'a', два любых символа, буква 'b'.
+// Пример строки: $str = 'ahb acb aeb aeeb adcb axeb';
+
+$str = 'ahb acb aeb aeeb adcb axeb';
+$matches = [];
+preg_match_all('/(a..b)/', $str, $matches);
+
+print_r($matches[0]);
+echo "\n";
+
+// b) Дана строка с целыми числами 'a1b2c3'. С помощью
+// регулярки преобразуйте строку так, чтобы вместо этих
+// чисел стояли их кубы.
+
+$str = 'a1b2c3';
+$result = preg_replace_callback('/\d/', static function($matches) {
+	return $matches[0] ** 3;
 }, $str);
-echo $str . "</br>";
-
+echo $result. "\n";
