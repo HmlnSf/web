@@ -12,6 +12,6 @@
 
 Лабораторная 5 - MySQL;  
 
-Лабораторная 6 - Symfony;  
+Лабораторная 6 - Symfony Quote;  
 
-Лабораторная 7 - Symfony.
+Лабораторная 7 - Symfony Admin.
