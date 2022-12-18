@@ -1,10 +1,5 @@
 {
 	"require": {
-		"google/apiclient": "2.0",
-		"ext-mysqli": "*"
-	}
-	,
-	"require-dev": {
-		"roave/security-advisories": "dev-latest"
+		"google/apiclient": "2.0"
 	}
 }
