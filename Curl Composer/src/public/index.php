@@ -1,94 +1,64 @@
 <?php
+error_reporting(E_ERROR | E_PARSE);
+require_once ('../../vendor/autoload.php');
 
-require_once "vendor/autoload.php";
+$googleAccountKeyFilePath = __DIR__ . '/watchful-idea-333811-a652e1d9b95c.json';
+putenv('GOOGLE_APPLICATION_CREDENTIALS=' . $googleAccountKeyFilePath);
 
 $client = new Google_Client();
-$client->setApplicationName('Google Sheets');
-$client->setScopes(Google_Service_Sheets::SPREADSHEETS);
-$client->setAuthConfig('test1-369017-7627fc6e137d.json');
+$client->useApplicationDefaultCredentials();
+$client->addScope('https://www.googleapis.com/auth/spreadsheets');
+
 $service = new Google_Service_Sheets($client);
-$id = "1Oa-tU8u6X3qgs6BPc4cD8IijhgeELk6UqjdIg2Fvbus";
 
+$spreadSheetId = '1-IMyj00s11fh1y3HKLP7FnmjWXcR5_BwF42wcbThngM';
 
-$range = "A1:D1";
-$valueRange = new Google_Service_Sheets_ValueRange();
-$valueRange->setValues(["values" => ["title", "name", "description", "email"]]);
-$params = ["valueInputOption" => "RAW"];
-$service->spreadsheets_values->update($id, $range, $valueRange, $params);
+$categories =  array_diff(scandir('../lab3/files'), ['.', '..']);
+
 ?>
 
-    <form action='index.php' method='post'>
-        <input type='text' name='title' placeholder='title'>
-        <input type='submit' name='submit' value='submit'>
-    </form>
+<form action="" method="post">
+	<p>Введите электронную почту<p>
+		<label>
+			<input type="email" name="email"/>
+		</label>
+	<p>Выберите категорию<p>
+		<label>
+			<select name="category">
+				<?php foreach ($categories as $category):?>
+					<option><?php echo $category?></option>
+				<?php endforeach;?>
+			</select>
+		</label>
+	<p>Введите заголовок объявления<p>
+		<label>
+			<input type="text" name="header"/>
+		</label>
+	<p>Введите текст объявления<p>
+		<label>
+			<textarea rows="6" cols="36" name="content"></textarea>
+		</label>
+		<input type="submit" value="Отправить">
+</form>
 
 <?php
-if(isset($_POST['submit'])){
-    $title = $_POST['title'];
-    $range = "A1";
-    $valueRange = new Google_Service_Sheets_ValueRange([
-        'values' => [[$title]]
-    ]);
-    $conf = ['valueInputOption' => 'RAW'];
-    $service->spreadsheets_values->append($id, $range, $valueRange, $conf);
-}
-?>
+if (
+	array_key_exists('email', $_POST)
+	&& array_key_exists('category', $_POST)
+	&& array_key_exists('header', $_POST)
+	&& array_key_exists('content', $_POST)
+)
+{
+	$values = [[
+				   $_POST['email'],
+				   $_POST['category'],
+				   $_POST['header'],
+				   $_POST['content']]
+	];
+	$body = new Google_Service_Sheets_ValueRange();
+	$body->setValues($values);
+	$options = ['valueInputOption' => 'RAW'];
+	$service->spreadsheets_values->append($spreadSheetId, 'newList', $body, $options);
 
-    <form action='index.php' method='post'>
-        <select name='title'>
-            <?php
-            $range = "A2:A";
-            $response = $service->spreadsheets_values->get($id, $range);
-            $values = $response->getValues();
-            if (count($values) == 0) {
-                echo "No data found.";
-            } else {
-                foreach ($values as $row) {
-                    echo "<option value='$row[0]'>$row[0]</option>";
-                }
-            }
-            ?>
-        </select>
-        <input type='text' name='name' placeholder='name'>
-        <input type='text' name='description' placeholder='description'>
-        <input type='text' name='email' placeholder='email'>
-        <input type='submit' value='Submit'>
-    </form>
-
-<?php
-if(isset($_POST['name'])){
-    $title = $_POST['title'];
-    $name = $_POST['name'];
-    $description = $_POST['description'];
-    $email = $_POST['email'];
-    $range = "A2:D";
-    $response = $service->spreadsheets_values->get($id, $range);
-    $values = $response->getValues();
-    $row = count($values) + 1;
-    $range = "A$row:D$row";
-    $valueRange = new Google_Service_Sheets_ValueRange([
-        'values' => [[$title, $name, $description, $email]]
-    ]);
-    $conf = ['valueInputOption' => 'RAW'];
-    $service->spreadsheets_values->append($id, $range, $valueRange, $conf);
+	header('Location: index.php');
 }
-?>
-
-<?php
-$range = "A2:D";
-$response = $service->spreadsheets_values->get($id, $range);
-$values = $response->getValues();
-if (count($values) == 0) {
-    echo "No data found.";
-} else {
-    echo "<table>";
-    foreach ($values as $row) {
-        echo "<tr>";
-        foreach ($row as $value) {
-            echo "<td>$value</td>";
-        }
-        echo "</tr>";
-    }
-    echo "</table>";
-}
-?>
